@@ -1,66 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# api-laravel-auth-template
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
 </p>
 
-## About Laravel
+## Sobre o Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O **api-laravel-auth-template** é um template de API construído com o framework Laravel, focado em fornecer um sistema de autenticação robusto e fácil de usar. Este projeto permite que os desenvolvedores integrem rapidamente funcionalidades de autenticação em suas aplicações, utilizando o Laravel Sanctum para gerenciamento de tokens de acesso.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Funcionalidades de Autenticação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Registro de Usuário**: Permite que novos usuários se registrem na aplicação.
+- **Login**: Usuários podem se autenticar usando suas credenciais.
+- **Logout**: Usuários podem se desconectar, revogando seus tokens de acesso.
+- **Gerenciamento de Tokens**: Os tokens de acesso são gerenciados de forma segura, permitindo que os usuários mantenham suas sessões ativas.
 
-## Learning Laravel
+## Requisitos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalados:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 8.2
+- Composer
+- Laravel 11.x
+- MySQL ou outro banco de dados suportado pelo Laravel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalação
 
-## Laravel Sponsors
+1. **Clone o repositório**:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```bash
+   git clone https://github.com/seu-usuario/api-laravel-auth-template.git
+   cd api-laravel-auth-template
+   ```
 
-### Premium Partners
+2. **Instale as dependências**:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   ```bash
+   composer install
+   ```
 
-## Contributing
+3. **Crie um arquivo `.env`**:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   Copie o arquivo `.env.example` para `.env`:
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Configure o banco de dados**:
 
-## Security Vulnerabilities
+   Abra o arquivo `.env` e configure as credenciais do seu banco de dados:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=nome_do_banco
+   DB_USERNAME=usuario
+   DB_PASSWORD=senha
+   ```
 
-## License
+5. **Gere a chave da aplicação**:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   php artisan key:generate
+   ```
+
+6. **Execute as migrações**:
+
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Inicie o servidor**:
+
+   ```bash
+   php artisan serve
+   ```
+
+   A aplicação estará disponível em `http://localhost:8000`.
+
+## Rotas
+
+As seguintes rotas estão disponíveis para autenticação:
+
+- `POST /register`: Registra um novo usuário.
+- `POST /login`: Autentica um usuário e retorna um token de acesso.
+- `POST /logout`: Desconecta o usuário, revogando o token de acesso.
+
+## Gerenciamento de Tokens
+
+Os tokens de acesso são gerados durante o login e podem ser usados para autenticar requisições subsequentes. O token deve ser incluído no cabeçalho `Authorization` das requisições, no formato:
+
+```
+Authorization: Bearer seu_token_aqui
+```
+
+Ao fazer logout, todos os tokens do usuário são revogados, garantindo que não possam mais ser utilizados.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+## Licença
+
+Este projeto é licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
