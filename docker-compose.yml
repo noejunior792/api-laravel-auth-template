@@ -12,23 +12,8 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_DATABASE=bank
-      - DB_USERNAME=root
-      - DB_PASSWORD=
-
-  db:
-    image: mysql:5.7
-    container_name: mysql_db
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: bank
-      MYSQL_ROOT_PASSWORD: 
-    volumes:
-      - db_data:/var/lib/mysql
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_DATABASE: ${DB_DATABASE}
 
 volumes:
   db_data:

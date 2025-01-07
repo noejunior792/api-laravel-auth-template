@@ -82,6 +82,35 @@ Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalado
 
    A aplicação estará disponível em `http://localhost:8000`.
 
+## Rodando o Projeto com Docker
+
+Para rodar o projeto usando Docker com SQLite, siga os passos abaixo:
+
+1. **Certifique-se de ter o Docker e o Docker Compose instalados** em sua máquina.
+
+2. **Crie um arquivo `.env`** com as configurações do banco de dados, se ainda não o fez. O arquivo deve conter:
+
+   ```env
+   DB_CONNECTION=sqlite
+   DB_DATABASE=/var/www/html/database/database.sqlite
+   ```
+
+3. **Crie o arquivo SQLite**:
+
+   ```bash
+   touch database/database.sqlite
+   ```
+
+4. **Construa e inicie os containers**:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+   Este comando irá construir a imagem e iniciar os containers. O script `entrypoint.sh` será executado automaticamente, instalando as dependências e executando as migrações.
+
+5. **A aplicação estará disponível em** `http://localhost:8000`.   
+
 ## Rotas
 
 As seguintes rotas estão disponíveis para autenticação:
