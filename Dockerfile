@@ -1,10 +1,15 @@
 # Usar a imagem oficial do PHP com Apache
 FROM php:8.2-apache
 
-# Instalar extensões necessárias e dependências
+# Instalar extensões necessárias e dependências do sistema
 RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
+    unzip \
+    git \
     && docker-php-ext-install pdo pdo_sqlite
+
+# Instalar o Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copiar o código da aplicação para o diretório do Apache
 COPY . /var/www/html
