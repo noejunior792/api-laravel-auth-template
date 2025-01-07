@@ -12,6 +12,8 @@ services:
     volumes:
       - .:/var/www/html
     environment:
+      APP_ENV: production
+      APP_DEBUG: false
       DB_CONNECTION: ${DB_CONNECTION}
 
 volumes:
