@@ -36,3 +36,5 @@ RUN mkdir -p /var/www/html/database && \
 
 # Set permissions for storage and cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+CMD ["php artisan migrate --force"]
