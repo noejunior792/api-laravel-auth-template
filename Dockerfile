@@ -1,3 +1,4 @@
+
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
@@ -8,12 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-
-RUN a2enmod rewrite
-
 COPY . /var/www/html
+
+RUN cp /var/www/html/.env.example /var/www/html/.env
+
 WORKDIR /var/www/html
+
 EXPOSE 80
-CMD ["sh", "-c", "composer install && php artisan key:generate && php artisan migrate --force && apache2-foreground"]
+
+CMD ["sh", "-c", "composer install && php artisan config:cache && php artisan migrate --force && apache2-foreground"]
